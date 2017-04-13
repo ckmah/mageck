@@ -1,0 +1,65 @@
+INFO  @ Fri, 24 Mar 2017 17:21:24: Parameters: //anaconda/bin/mageck count -l library.txt -n demo --sample-label L1,CTRL --fastq test1.fastq test2.fastq --pdf-report 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Welcome to MAGeCK v0.5.5. Command: count 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Loading 2550 predefined sgRNAs. 
+WARNING @ Fri, 24 Mar 2017 17:21:24: There are 0 sgRNAs with duplicated sequences. 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Parsing FASTQ file test1.fastq... 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Possible gRNA lengths:20 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Processing 0M lines.. 
+INFO  @ Fri, 24 Mar 2017 17:21:24: mapped:1453 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Parsing FASTQ file test2.fastq... 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Possible gRNA lengths:20 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Processing 0M lines.. 
+INFO  @ Fri, 24 Mar 2017 17:21:24: mapped:1471 
+DEBUG @ Fri, 24 Mar 2017 17:21:24: Initial (total) size factor: 1.006194081211287 0.9938817131203264 
+WARNING @ Fri, 24 Mar 2017 17:21:24: Sample 0 has zero median count, so median normalization is not possible. Switch to total read count normalization. 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Final size factor: 1.006194081211287 0.9938817131203264 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Summary of file test1.fastq: 
+INFO  @ Fri, 24 Mar 2017 17:21:24: giniindex	0.5266899931488773 
+INFO  @ Fri, 24 Mar 2017 17:21:24: totalsgrnas	2550 
+INFO  @ Fri, 24 Mar 2017 17:21:24: reads	2500 
+INFO  @ Fri, 24 Mar 2017 17:21:24: zerosgrnas	1276 
+INFO  @ Fri, 24 Mar 2017 17:21:24: label	L1 
+INFO  @ Fri, 24 Mar 2017 17:21:24: mappedreads	1453 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Summary of file test2.fastq: 
+INFO  @ Fri, 24 Mar 2017 17:21:24: giniindex	0.4930917310247763 
+INFO  @ Fri, 24 Mar 2017 17:21:24: totalsgrnas	2550 
+INFO  @ Fri, 24 Mar 2017 17:21:24: reads	2500 
+INFO  @ Fri, 24 Mar 2017 17:21:24: zerosgrnas	1199 
+INFO  @ Fri, 24 Mar 2017 17:21:24: label	CTRL 
+INFO  @ Fri, 24 Mar 2017 17:21:24: mappedreads	1471 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Loading Rnw template file: //anaconda/lib/python3.5/site-packages/mageck/fastq_template.Rnw. 
+DEBUG @ Fri, 24 Mar 2017 17:21:24: Setting up the visualization module... 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Running command: cd ./; Rscript demo_countsummary.R 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Command message: 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   Writing to file demo_countsummary.tex 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   Processing code chunks with options ... 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    1 : keep.source term verbatim (label = funcdef, demo_countsummary.Rnw:28) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    2 : keep.source term tex (label = tab1, demo_countsummary.Rnw:156) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    3 : keep.source term tex (label = tab2, demo_countsummary.Rnw:174) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    4 : keep.source term tex (label = tab3, demo_countsummary.Rnw:188) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    5 : keep.source term verbatim pdf  (demo_countsummary.Rnw:221) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    6 : keep.source term verbatim pdf  (demo_countsummary.Rnw:228) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    7 : keep.source term verbatim pdf  (demo_countsummary.Rnw:238) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    8 : keep.source term verbatim pdf  (demo_countsummary.Rnw:242) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    9 : keep.source term verbatim pdf  (demo_countsummary.Rnw:251) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    
+INFO  @ Fri, 24 Mar 2017 17:21:24:   Attaching package: ‘gplots’ 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    
+INFO  @ Fri, 24 Mar 2017 17:21:24:   The following object is masked from ‘package:stats’: 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    
+INFO  @ Fri, 24 Mar 2017 17:21:24:       lowess 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    
+INFO  @ Fri, 24 Mar 2017 17:21:24:    
+INFO  @ Fri, 24 Mar 2017 17:21:24:   You can now run (pdf)latex on ‘demo_countsummary.tex’ 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   There were 16 warnings (use warnings() to see them) 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   Error in texi2dvi("demo_countsummary.tex", pdf = TRUE) :  
+INFO  @ Fri, 24 Mar 2017 17:21:24:     Running 'texi2dvi' on 'demo_countsummary.tex' failed. 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   Messages: 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   sh: /usr/local/opt/texinfo/bin/texi2dvi: No such file or directory 
+INFO  @ Fri, 24 Mar 2017 17:21:24:   Execution halted 
+INFO  @ Fri, 24 Mar 2017 17:21:24:    
+INFO  @ Fri, 24 Mar 2017 17:21:24: End command message. 
+INFO  @ Fri, 24 Mar 2017 17:21:24: Running command: cd ./; rm -rf demo_countsummary-*.pdf 
+INFO  @ Fri, 24 Mar 2017 17:21:25: Command message: 
+INFO  @ Fri, 24 Mar 2017 17:21:25:    
+INFO  @ Fri, 24 Mar 2017 17:21:25: End command message. 

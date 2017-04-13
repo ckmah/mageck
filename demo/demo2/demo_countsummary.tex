@@ -1,0 +1,138 @@
+% This is a template file for Sweave used in MAGeCK
+% Author: Wei Li, Shirley Liu lab
+% Do not modify lines beginning with "#__".
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[tableposition=top]{caption}
+\usepackage{ifthen}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+% \usepackage{longtable}
+
+\usepackage{Sweave}
+\begin{document}
+\setkeys{Gin}{width=0.9\textwidth}
+
+\title{MAGeCK Count Report}
+\author{Wei Li}
+
+\maketitle
+
+
+\tableofcontents
+
+\section{Summary}
+
+%Function definition
+
+%__FILE_SUMMARY__
+
+The statistics of comparisons are listed in Table 1 and Table 2.
+The corresponding fastq files in each row are listed in Table 3.
+
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Fri Mar 24 17:21:24 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccccc}
+  \hline
+ & Label & Reads & Mapped & Percentage \\ 
+  \hline
+1 & L1 & 2500 & 1453 & 0.58 \\ 
+  2 & CTRL & 2500 & 1471 & 0.59 \\ 
+   \hline
+\end{tabular}
+\caption{Summary of comparisons} 
+\label{tab:one}
+\end{table}
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Fri Mar 24 17:21:24 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccccc}
+  \hline
+ & Label & TotalsgRNA & ZeroCounts & GiniIndex \\ 
+  \hline
+1 & L1 & 2550 & 1276 & 0.53 \\ 
+  2 & CTRL & 2550 & 1199 & 0.49 \\ 
+   \hline
+\end{tabular}
+\caption{Summary of comparisons} 
+\label{tab:two}
+\end{table}
+
+
+
+
+% latex table generated in R 3.3.1 by xtable 1.8-2 package
+% Fri Mar 24 17:21:24 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{cp{9cm}c}
+  \hline
+ & File & Label \\ 
+  \hline
+1 & test1.fastq & L1 \\ 
+  2 & test2.fastq & CTRL \\ 
+   \hline
+\end{tabular}
+\caption{Summary of samples} 
+\label{tab:three}
+\end{table}
+
+
+
+The meanings of the columns are as follows.
+
+\begin{itemize}
+\item \textbf{Row}: The row number in the table;
+\item \textbf{File}: The filename of fastq file;
+\item \textbf{Label}: Assigned label;
+\item \textbf{Reads}: The total read count in the fastq file;
+\item \textbf{Mapped}: Reads that can be mapped to gRNA library;
+\item \textbf{Percentage}: The percentage of mapped reads;
+\item \textbf{TotalsgRNAs}: The number of sgRNAs in the library; 
+\item \textbf{ZeroCounts}: The number of sgRNA with 0 read counts;
+\item \textbf{GiniIndex}: The Gini Index of the read count distribution. Gini index can be used to measure the evenness of the read counts, and a smaller value means a more even distribution of the read counts.
+\end{itemize}
+
+
+
+\newpage\section{Normalized read count distribution of all samples}
+The following figure shows the distribution of median-normalized read counts in all samples.
+
+
+\includegraphics{demo_countsummary-005}
+
+The following figure shows the histogram of median-normalized read counts in all samples.
+
+
+\includegraphics{demo_countsummary-006}
+
+
+\newpage\section{Principle Component Analysis}
+The following figure shows the first 2 principle components (PCs) from the Principle Component Analysis (PCA), and the percentage of variances explained by the top PCs.
+
+
+
+\includegraphics{demo_countsummary-007}
+
+\includegraphics{demo_countsummary-008}
+
+
+\newpage\section{Sample clustering}
+The following figure shows the sample clustering result.
+
+
+\includegraphics{demo_countsummary-009}
+
+%__INDIVIDUAL_PAGE__
+
+
+
+
+
+\end{document}
+

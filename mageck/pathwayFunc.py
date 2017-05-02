@@ -131,7 +131,7 @@ def mageck_pathwayrra_onedir(args,pdict,cid,sourcefile,rra_path_input_file,rra_p
   print('\t'.join(['gene','pathway','pool','score']),file=rra_path_input)
 
   ginfo=mageck_readgeneranking(sourcefile,args,columnid=cid)
-  ginfo_st=sorted(ginfo.iteritems(),key=lambda x: x[1])
+  ginfo_st=sorted(ginfo.items(),key=lambda x: x[1])
   nthreshold=0
   for gtuple in ginfo_st:
     genename=gtuple[0]
@@ -145,7 +145,7 @@ def mageck_pathwayrra_onedir(args,pdict,cid,sourcefile,rra_path_input_file,rra_p
       gscore=0
     ## old method: for each gene, make a copy for each pathway
     #niters=0
-    #for (k,v) in pdict.iteritems():
+    #for (k,v) in pdict.items():
     #  if genename in v:
     #    niters+=1
     #    print('\t'.join([genename+'_copy'+str(niters),k,'list',str(gscore)]),file=rra_path_input)
@@ -153,7 +153,7 @@ def mageck_pathwayrra_onedir(args,pdict,cid,sourcefile,rra_path_input_file,rra_p
     #  print('\t'.join([genename,'NA','list',str(gscore)]),file=rra_path_input)
     ## new method: pathway name separated by ','
     pnamelist=[]
-    for (k,v) in pdict.iteritems():
+    for (k,v) in pdict.items():
       if genename in v:
         pnamelist+=[k]
     if len(pnamelist)==0:
@@ -163,6 +163,7 @@ def mageck_pathwayrra_onedir(args,pdict,cid,sourcefile,rra_path_input_file,rra_p
   rra_path_input.close()
   # rra_threshold=nthreshold*1.0/len(ginfo_st)
   rra_threshold=args.pathway_alpha
+
   # rank association test
   rank_association_test(rra_path_input_file,rra_path_output_file,rra_threshold,args)
 
@@ -174,7 +175,7 @@ def mageck_pathway_standardize(gdict):
   ginfo_med=ginfo_vec[len(ginfo_vec)//2]
   ginfo_var=sum([ (x-ginfo_med)**2 for x in ginfo_vec])/(len(ginfo_vec)-1)
   ginfo_std=ginfo_var**0.5
-  ginfo_rt={ k:((v-ginfo_med)/ginfo_std) for (k,v) in gdict.iteritems()}
+  ginfo_rt={ k:((v-ginfo_med)/ginfo_std) for (k,v) in gdict.items()}
   return ginfo_rt
 
 def mageck_pathway_ztest_permutation(args,gdict,pdict,pdictpvals):
@@ -190,7 +191,7 @@ def mageck_pathway_ztest_permutation(args,gdict,pdict,pdictpvals):
     itercounter+=1
     if itercounter % 100 ==1:
       print('.',end='',file=sys.stderr)
-    for (pname,pitem) in pdictpvals.iteritems():
+    for (pname,pitem) in pdictpvals.items():
       nsize=pitem[2]
       # testvecsq=[x**2 for x in testvec]
       if nsize>1:
@@ -205,7 +206,7 @@ def mageck_pathway_ztest_permutation(args,gdict,pdict,pdictpvals):
       if pitem[3]<=testval2:
         pdictqvals[pname][1]+=1
   print('',file=sys.stderr)
-  pdictqvals={k:(v[0]*1.0/niter,v[1]*1.0/niter) for (k,v) in pdictqvals.iteritems()}
+  pdictqvals={k:(v[0]*1.0/niter,v[1]*1.0/niter) for (k,v) in pdictqvals.items()}
   return pdictqvals
 
 
@@ -219,7 +220,7 @@ def mageck_pathway_ztest(args,gdict,pdict):
                    p value (low), pvalue (high), size of the pathway genes in the destination, and test statistics
   '''
   pdictpvals={}
-  for (pname,pitem) in pdict.iteritems():
+  for (pname,pitem) in pdict.items():
     testvec=[gdict[x] for x in pitem if x in gdict]
     testvecsq=[x**2 for x in testvec]
     if len(testvec)>1:
@@ -251,7 +252,7 @@ def mageck_pathwaygsa(args):
   ranktransform=True
   ginfo_rt=ginfo
   if ranktransform:
-    ginfo_st=sorted(ginfo.iteritems(),key=lambda x: x[1])
+    ginfo_st=sorted(ginfo.items(),key=lambda x: x[1])
     gauss_x=sorted([ random.gauss(0,1) for x in ginfo_st])
     ginfo_rt={ ginfo_st[i][0]:gauss_x[i] for i in range(len(ginfo_st))}
   # standardize the scores
@@ -259,13 +260,13 @@ def mageck_pathwaygsa(args):
 
   # test for pathways
   pathway_pval=mageck_pathway_ztest(args,ginfo_sd,pdict)
-  #pathway_pval_tup=sorted(pathway_pval.iteritems(),key=lambda x : min(x[1][:2]))
+  #pathway_pval_tup=sorted(pathway_pval.items(),key=lambda x : min(x[1][:2]))
   #x_pvalues=[min(t[1][:2]) for t in pathway_pval_tup]
   #x_fdr=pFDR(x_pvalues)
 
   # permutation?
   pathway_qval=mageck_pathway_ztest_permutation(args,ginfo_sd,pdict,pathway_pval)
-  pathway_qval_tup=sorted(pathway_qval.iteritems(),key=lambda x:min(x[1]))
+  pathway_qval_tup=sorted(pathway_qval.items(),key=lambda x:min(x[1]))
   x_qvalues=[min(t[1]) for t in pathway_qval_tup]
   x_fdr=pFDR(x_qvalues)
   # output file
